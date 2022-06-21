@@ -1,0 +1,11 @@
+post {
+	// Код ниже будет выполнен вне зависимости от статуса сборки трубы или этапа
+	always {
+		script {
+			# Устанавливаю результат сборки трубы
+			currentBuild.result = currentBuild.result ?: 'SUCCESS'
+			# Уведомляю Bitbucket о результате сборки
+			notifyBitbucket()
+		}
+	}
+}
